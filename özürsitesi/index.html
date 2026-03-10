@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    text-align: center;
+    background-color: #f3e5f5;
+    margin-top: 50px;
+    font-family: sans-serif;
+  }
+
+  img {
+    height: 250px;
+  }
+
+  button {
+    border: none;
+    padding: 15px 40px;
+    border-radius: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 10px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.2); 
+  }
+
+  #evet { background-color: #9c27b0; color: white; }
+  #hayir { background-color: #9c27b0; color: white; }
+</style>
+</head>
+<body>
+
+<img id="anaResim" src="kedi1.gif">
+
+<h1 id="anaBaslik">Özledim Barışalım mı?</h1>
+<p id="altYazi">Küs kalmaya gerek yok bence</p>
+
+<br><br> 
+<button id="evet">evet</button>
+<button id="hayir">hayir</button>
+
+<script>
+  // Değişkenleri Tanımlıyoruz
+  let hayirButonu = document.getElementById("hayir");
+  let evetButonu = document.getElementById("evet");
+  let resim = document.getElementById("anaResim");
+  let baslik = document.getElementById("anaBaslik");
+  let altYazi = document.getElementById("altYazi");
+  
+  let tiklamaSayisi = 0;
+  
+  // Hayır Butonu İşlemleri
+  hayirButonu.addEventListener("click", function() {
+    tiklamaSayisi = tiklamaSayisi + 1;
+    
+    if (tiklamaSayisi == 1) {
+      resim.src = "kedi2.gif";
+      baslik.innerHTML = "Emin misin?";
+      altYazi.innerHTML = "Bir daha düşün bence";
+    }
+    
+    if (tiklamaSayisi == 2) {
+      resim.src = "kedi3.gif";
+      baslik.innerHTML = "Gerçekten mi?";
+      altYazi.innerHTML = "kırılıyorum ama";
+    }
+    
+    if (tiklamaSayisi == 3) {
+      resim.src = "kedi4.gif";
+      baslik.innerHTML = "peki simdi basta görelim";
+      altYazi.innerHTML = "sanırım evete basman gerekiyor";
+      
+      // Kaçma Modu Aktif (Bilgisayar İçin)
+      hayirButonu.addEventListener("mouseover", function() {
+        hayirButonu.style.position = "absolute";
+        let rastgeleX = Math.random() * (window.innerWidth - 150);
+        let rastgeleY = Math.random() * (window.innerHeight - 150);
+        hayirButonu.style.left = rastgeleX + "px";
+        hayirButonu.style.top = rastgeleY + "px";
+      });
+
+      // Kaçma Modu Aktif (Telefon İçin Eklenen Kısım)
+      hayirButonu.addEventListener("touchstart", function(olay) {
+        olay.preventDefault();
+        hayirButonu.style.position = "absolute";
+        let rastgeleX = Math.random() * (window.innerWidth - 150);
+        let rastgeleY = Math.random() * (window.innerHeight - 150);
+        hayirButonu.style.left = rastgeleX + "px";
+        hayirButonu.style.top = rastgeleY + "px";
+      });
+    }
+  });
+  
+  // Evet Butonu İşlemleri
+  evetButonu.addEventListener("click", function() {
+    resim.src = "mutlu.gif"; 
+    baslik.innerHTML = "yupiii❤️";
+    altYazi.innerHTML = "Biliyordum beni affedeceğini ";
+    evetButonu.style.display = "none";
+    hayirButonu.style.display = "none";
+  });
+</script>
+
+</body>
+</html>
